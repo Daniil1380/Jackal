@@ -20,5 +20,10 @@
             <Image url="@../../../../Downloads/50adce3f5d64.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="246.0" fitWidth="492.0" layoutX="-8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Desktop/Noir.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
