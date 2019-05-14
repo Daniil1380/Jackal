@@ -3,8 +3,6 @@ package sample;
 import javafx.scene.image.ImageView;
 import javafx.util.Pair;
 
-import java.util.ArrayList;
-
 public class CollisonObjects {
     public static boolean check(ImageView firstImage, ImageView secondImage) {
         Pair <Double, Double> point1 = new Pair<>(firstImage.getX(), firstImage.getY());

@@ -3,7 +3,6 @@ package sample;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,53 +16,89 @@ import java.io.File;
 import java.io.IOException;
 
 public class Main extends Application implements EventHandler<KeyEvent> {
+    static char[][] boxes;
+    static {
+        try {
+            boxes = LevelRead.create("src\\sample\\files\\Level.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private Pane root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-    private Scene scene = new Scene(root, 1300, 650);
-    private ImageView image = new ImageView("sample\\files\\mainChar.png");
-    private ImageView enemy = new ImageView("sample\\files\\enemyP.png");
-    private ImageView fog = new ImageView("sample\\files\\fog.png");
-    private ImageView health = new ImageView("sample\\files\\health.png");
-    private ImageView pistol = new ImageView("sample\\files\\pistol.png");
-    private ImageView blood = new ImageView("sample\\files\\blood.png");
-    private ImageView diary = new ImageView("sample\\files\\diary.png");
-    private ImageView key = new ImageView("sample\\files\\key.png");
-    private ImageView keyGreenRed = new ImageView("sample\\files\\keyGreenRed.png");
-    private ImageView pistolGreenRed = new ImageView("sample\\files\\pistolRedGreen.png");
-    private ImageView diaryGreenRed = new ImageView("sample\\files\\diaryRedGreen.png");
-    private ImageView bloodGreenRed = new ImageView("sample\\files\\bloodRedGreen.png");
-    private String file = "src\\sample\\files\\lol.mp3";
-    private Media sound = new Media(new File(file).toURI().toString());
-    private MediaPlayer media = new MediaPlayer(sound);
-    private String takeS = "src\\sample\\files\\take.mp3";
-    private Media mediaS = new Media(new File(takeS).toURI().toString());
-    private MediaPlayer take = new MediaPlayer(mediaS);
-    private int[] hp = {200};
+    Scene scene = new Scene(root, 1300, 650);
+    static ImageView image = new ImageView("sample\\files\\mainChar.png");
+    static ImageView enemy = new ImageView("sample\\files\\enemyP.png");
+    static ImageView fog = new ImageView("sample\\files\\fog.png");
+    static ImageView diedText = new ImageView("sample\\files\\DiedText.png");
+    static ImageView health = new ImageView("sample\\files\\health.png");
+    static ImageView pistol = new ImageView("sample\\files\\pistol.png");
+    static ImageView blood = new ImageView("sample\\files\\blood.png");
+    static ImageView diary = new ImageView("sample\\files\\diary.png");
+    static ImageView key = new ImageView("sample\\files\\key.png");
+    static ImageView keyGreenRed = new ImageView("sample\\files\\keyGreenRed.png");
+    static ImageView pistolGreenRed = new ImageView("sample\\files\\pistolRedGreen.png");
+    static ImageView diaryGreenRed = new ImageView("sample\\files\\diaryRedGreen.png");
+    static ImageView bloodGreenRed = new ImageView("sample\\files\\bloodRedGreen.png");
+    static ImageView text = new ImageView("sample\\files\\text.png");
+    static ImageView film = new ImageView("sample\\files\\film.jpg");
+    private static String file = "src\\sample\\files\\die.mp3";
+    private static Media sound = new Media(new File(file).toURI().toString());
+    static MediaPlayer media = new MediaPlayer(sound);
+    private static String takeS = "src\\sample\\files\\take.mp3";
+    private static Media mediaS = new Media(new File(takeS).toURI().toString());
+    static MediaPlayer take = new MediaPlayer(mediaS);
+    static int[] hp = {200};
+    static private String f = "src\\sample\\files\\ost.mp3";
+    static private Media s = new Media(new File(f).toURI().toString());
+    static MediaPlayer ost = new MediaPlayer(s);
+    static ImageView bang = new ImageView("sample\\files\\fireBall.png");
+    static private String exc = "src\\sample\\files\\pain.mp3";
+    static private Media ex = new Media(new File(exc).toURI().toString());
+    static MediaPlayer explosive = new MediaPlayer(ex);
+    static private String winer = "src\\sample\\files\\win.mp3";
+    static private Media wine = new Media(new File(winer).toURI().toString());
+    static MediaPlayer win = new MediaPlayer(wine);
+
 
 
     public Main() throws IOException {
     }
 
 
+
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
+        explosive.play();
+        explosive.stop();
+        win.play();
+        win.stop();
+        bang.setFitHeight(30);
+        bang.setFitWidth(30);
+        ost.play();
+        take.play();
+        take.stop();
+        take.setVolume(40);
         Create.floor(root);
-        BoxesCreate.create(root, AllOptions.mover);
-        Create.character(image, root);
-        Create.enemy(enemy, root);
-        Create.key(key, root);
-        Create.pistol(pistol, root);
-        Create.blood(blood, root);
-        Create.diary(diary, root);
-        Create.fog(fog, root);
+        BoxesCreate.create(root, boxes);
+        Create.character(root);
+        Create.enemy(root);
+        Create.key(root);
+        Create.pistol(root);
+        Create.blood(root);
+        Create.diary(root);
+        root.getChildren().add(bang);
+        Create.fog(root);
         Create.noir(root);
-        Create.keyGreenRed(keyGreenRed, root);
-        Create.bloodGreenRed(bloodGreenRed, root);
-        Create.diaryGreenRed(diaryGreenRed, root);
-        Create.pistolGreenRed(pistolGreenRed, root);
+        Create.keyGreenRed(root);
+        Create.bloodGreenRed(root);
+        Create.diaryGreenRed(root);
+        Create.pistolGreenRed(root);
         Create.healthFrame(root);
-        Create.health(health, root);
-        Move.start(scene, image, enemy, fog, pistol, blood, diary, key, hp, health, media, take, pistolGreenRed,
-                bloodGreenRed, diaryGreenRed, keyGreenRed);
+        Create.health(root);
+        Create.film(root);
+        Create.text(root);
+        Create.diedText(root);
+        Move.start(scene, root);
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setTitle("Noir");

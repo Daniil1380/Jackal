@@ -3,8 +3,11 @@ package sample;
 
 import javafx.scene.image.ImageView;
 
+import static sample.Main.boxes;
+import static sample.Main.*;
+
 public class SpeedBoost {
-    public static void start(int[] wCount, int[] sCount, int[] aCount, int[] dCount, Characters chars, ImageView image) {
+    public static void start(int[] wCount, int[] sCount, int[] aCount, int[] dCount, Characters chars) {
         int x = (int) image.getX();
         int y = (int) image.getY();
         if (wCount[0]>55 || (wCount[0]>16 && wCount[0] % 2 ==0) || ((wCount[0] % 4 == 0) && wCount[0]>0) &&
