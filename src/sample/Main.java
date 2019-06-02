@@ -11,53 +11,57 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import sample.Model.Move;
+import sample.View.BoxesCreate;
+import sample.View.Create;
+import sample.View.LevelRead;
 
 import java.io.File;
 import java.io.IOException;
 
 public class Main extends Application implements EventHandler<KeyEvent> {
-    static char[][] boxes;
+    public static char[][] boxes;
     static {
         try {
-            boxes = LevelRead.create("src\\sample\\files\\Level.txt");
+            boxes = LevelRead.create("src/sample/Files/level.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     private Pane root = FXMLLoader.load(getClass().getResource("sample.fxml"));
     Scene scene = new Scene(root, 1300, 650);
-    static ImageView image = new ImageView("sample\\files\\mainChar.png");
-    static ImageView enemy = new ImageView("sample\\files\\enemyP.png");
-    static ImageView fog = new ImageView("sample\\files\\fog.png");
-    static ImageView diedText = new ImageView("sample\\files\\DiedText.png");
-    static ImageView health = new ImageView("sample\\files\\health.png");
-    static ImageView pistol = new ImageView("sample\\files\\pistol.png");
-    static ImageView blood = new ImageView("sample\\files\\blood.png");
-    static ImageView diary = new ImageView("sample\\files\\diary.png");
-    static ImageView key = new ImageView("sample\\files\\key.png");
-    static ImageView keyGreenRed = new ImageView("sample\\files\\keyGreenRed.png");
-    static ImageView pistolGreenRed = new ImageView("sample\\files\\pistolRedGreen.png");
-    static ImageView diaryGreenRed = new ImageView("sample\\files\\diaryRedGreen.png");
-    static ImageView bloodGreenRed = new ImageView("sample\\files\\bloodRedGreen.png");
-    static ImageView text = new ImageView("sample\\files\\text.png");
-    static ImageView film = new ImageView("sample\\files\\film.jpg");
-    private static String file = "src\\sample\\files\\die.mp3";
+    public static ImageView image = new ImageView("sample/Files/mainChar.png");
+    public static ImageView enemy = new ImageView("sample/Files/enemyP.png");
+    public static ImageView fog = new ImageView("sample/Files/fog.png");
+    public static ImageView diedText = new ImageView("sample/Files/diedText.png");
+    public static ImageView health = new ImageView("sample/Files/health.png");
+    public static ImageView pistol = new ImageView("sample/Files/pistol.png");
+    public static ImageView blood = new ImageView("sample/Files/blood.png");
+    public static ImageView diary = new ImageView("sample/Files/diary.png");
+    public static ImageView key = new ImageView("sample/Files/key.png");
+    public static ImageView keyGreenRed = new ImageView("sample/Files/keyGreenRed.png");
+    public static ImageView pistolGreenRed = new ImageView("sample/Files/pistolRedGreen.png");
+    public static ImageView diaryGreenRed = new ImageView("sample/Files/diaryRedGreen.png");
+    public static ImageView bloodGreenRed = new ImageView("sample/Files/bloodRedGreen.png");
+    public static ImageView text = new ImageView("sample/Files/text.png");
+    public static ImageView film = new ImageView("sample/Files/film.jpg");
+    private static String file = "src/sample/Files/die.mp3";
     private static Media sound = new Media(new File(file).toURI().toString());
-    static MediaPlayer media = new MediaPlayer(sound);
-    private static String takeS = "src\\sample\\files\\take.mp3";
+    public static MediaPlayer media = new MediaPlayer(sound);
+    private static String takeS = "src/sample/Files/take.mp3";
     private static Media mediaS = new Media(new File(takeS).toURI().toString());
-    static MediaPlayer take = new MediaPlayer(mediaS);
-    static int[] hp = {200};
-    static private String f = "src\\sample\\files\\ost.mp3";
+    public static MediaPlayer take = new MediaPlayer(mediaS);
+    public static int hp = 200;
+    static private String f = "src/sample/Files/ost.mp3";
     static private Media s = new Media(new File(f).toURI().toString());
-    static MediaPlayer ost = new MediaPlayer(s);
-    static ImageView bang = new ImageView("sample\\files\\fireBall.png");
-    static private String exc = "src\\sample\\files\\pain.mp3";
+    public static MediaPlayer ost = new MediaPlayer(s);
+    public static ImageView bang = new ImageView("sample/Files/fireBall.png");
+    static private String exc = "src/sample/Files/pain.mp3";
     static private Media ex = new Media(new File(exc).toURI().toString());
-    static MediaPlayer explosive = new MediaPlayer(ex);
-    static private String winer = "src\\sample\\files\\win.mp3";
+    public static MediaPlayer explosive = new MediaPlayer(ex);
+    static private String winer = "src/sample/Files/win.mp3";
     static private Media wine = new Media(new File(winer).toURI().toString());
-    static MediaPlayer win = new MediaPlayer(wine);
+    public static MediaPlayer win = new MediaPlayer(wine);
 
 
 
@@ -98,12 +102,12 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         Create.film(root);
         Create.text(root);
         Create.diedText(root);
-        Move.start(scene, root);
+        Move.start(scene);
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setTitle("Noir");
         primaryStage.setResizable(false);
-        primaryStage.getIcons().add(new Image("sample\\files\\Icon.jpg"));
+        primaryStage.getIcons().add(new Image("sample/Files/Icon.jpg"));
     }
 
 

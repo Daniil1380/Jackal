@@ -1,8 +1,10 @@
-package sample;
+package sample.View;
 
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import sample.View.Box;
+
 import java.util.Random;
 
 public class BoxesCreate {
@@ -14,7 +16,7 @@ public class BoxesCreate {
                 if (c.equals('1')) {
                     Random random = new Random();
                     int num = random.nextInt(2);
-                    ImageView image = new ImageView("sample\\files\\box" + String.valueOf(num) + ".png");
+                    ImageView image = new ImageView("sample/Files/box" + String.valueOf(num) + ".png");
                     Box.def(image, i);
                     image.setEffect(new DropShadow());
                     root.getChildren().add(image);

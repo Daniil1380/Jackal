@@ -1,4 +1,4 @@
-package sample;
+package sample.Model;
 
 class Maths {
     static int radius(double x1, double x2, double y1, double y2) {

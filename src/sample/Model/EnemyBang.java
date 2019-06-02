@@ -1,15 +1,15 @@
-package sample;
-
-import java.util.Arrays;
+package sample.Model;
 
 import static sample.Main.*;
+import static sample.Model.Move.countEnemy;
 
-public class EnemyBang {
-    static double here[] = {0, 0, 0, 0};
+class EnemyBang {
+    private static double here[] = {0, 0, 0, 0};
 
-    static void create(int[] countEnemy) {
-        if (countEnemy[0]%150 == 0) EnemyBang.start();
-        else if (countEnemy[0]%150 == 149) EnemyBang.finish();
+    static void create() {
+        int speedOfCreate = 150;
+        if (countEnemy % speedOfCreate == 0) EnemyBang.start();
+        else if (countEnemy % speedOfCreate == speedOfCreate - 1) EnemyBang.finish();
         else {
             EnemyBang.move();
             EnemyBang.heroPain();
@@ -40,8 +40,9 @@ public class EnemyBang {
     }
 
     private static void heroPain() {
-            Health.change(bang, 40);
-            if (CollisonObjects.check(bang, image)) {
+        int pain = 40;
+        Health.change(bang, pain);
+            if (CollisionObjects.check(bang, image)) {
                 bang.setVisible(false);
                 explosive.stop();
                 explosive.play();

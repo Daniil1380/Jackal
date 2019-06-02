@@ -1,10 +1,10 @@
-package sample;
+package sample.Model;
 
 import javafx.scene.image.ImageView;
 import javafx.util.Pair;
 
-public class CollisonObjects {
-    public static boolean check(ImageView firstImage, ImageView secondImage) {
+class CollisionObjects {
+    static boolean check(ImageView firstImage, ImageView secondImage) {
         Pair <Double, Double> point1 = new Pair<>(firstImage.getX(), firstImage.getY());
         Pair <Double, Double> point2 = new Pair<>(firstImage.getX() + firstImage.getFitWidth(), firstImage.getY());
         Pair <Double, Double> point3 = new Pair<>(firstImage.getX(), firstImage.getY() + firstImage.getFitHeight());
@@ -40,9 +40,7 @@ public class CollisonObjects {
         if (point7.getKey() >= point1.getKey() && point7.getKey() <= point4.getKey() &&
                 point7.getValue() >= point1.getValue() && point7.getValue() <= point4.getValue())
             return true;
-        if (point8.getKey() >= point1.getKey() && point8.getKey() <= point4.getKey() &&
-                point8.getValue() >= point1.getValue() && point8.getValue() <= point4.getValue())
-            return true;
-        return false;
+        return point8.getKey() >= point1.getKey() && point8.getKey() <= point4.getKey() &&
+                point8.getValue() >= point1.getValue() && point8.getValue() <= point4.getValue();
     }
 }
